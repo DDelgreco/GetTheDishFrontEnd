@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Container } from "native-base";
 import { View } from "react-native";
 import ItemCard from "./ItemCard";
 
@@ -25,11 +24,23 @@ export default class CardList extends Component {
       return [];
     }
   }
+  navigate(food) {
+    this.props.navigation.navigate("SingleItem", {food} );
+  }
+
   render() {
     return (
       <View>
         {this.state.foods.map((food, index) => {
-          return <ItemCard key={index} food={food} />;
+          return (
+            <ItemCard
+              key={index}
+              food={food}
+              Navigate={() => {
+                this.navigate(food);
+              }}
+            />
+          );
         })}
       </View>
     );

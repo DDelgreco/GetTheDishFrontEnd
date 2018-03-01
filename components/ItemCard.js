@@ -14,10 +14,10 @@ import {
 } from "native-base";
 
 export default class ItemCard extends Component {
-    constructor(props) {
-        super(props);
-        this.food = this.props.food;
-    }
+  constructor(props) {
+    super(props);
+    this.food = this.props.food;
+  }
   render() {
     return (
       <Card style={{ flex: 0 }}>
@@ -25,14 +25,16 @@ export default class ItemCard extends Component {
           <Left>
             <Body>
               <Thumbnail
-                style={{ height:100, width: 100 }}
+                style={{ height: 100, width: 100 }}
                 source={require("../pictures/food.png")}
               />
             </Body>
           </Left>
           <Right>
             <Body>
-              <Text style={{ textAlign: 'center', fontSize: 20 }}>{this.food.name}</Text>
+              <Text style={{ textAlign: "center", fontSize: 20 }}>
+                {this.food.name}
+              </Text>
               <Text style={{ fontSize: 20 }} note>
                 Restaurant
               </Text>
@@ -41,8 +43,13 @@ export default class ItemCard extends Component {
         </CardItem>
         <CardItem>
           <Body>
-            <Text style={{fontSize: 10}}>1000 1st St. Birmingham, AL 35242</Text>
-            <Text style={{fontSize: 10}}note> (555)555-5555</Text>
+            <Text style={{ fontSize: 10 }}>
+              1000 1st St. Birmingham, AL 35242
+            </Text>
+            <Text style={{ fontSize: 10 }} note>
+              {" "}
+              (555)555-5555
+            </Text>
           </Body>
         </CardItem>
         <CardItem>
@@ -53,7 +60,11 @@ export default class ItemCard extends Component {
             </Button>
           </Left>
           <Right>
-            <Button small style={{ backgroundColor: "#0099ff" }}>
+            <Button
+              onPress={this.props.Navigate}
+              small
+              style={{ backgroundColor: "#0099ff" }}
+            >
               <Icon />
               <Text style={{ textAlign: "center" }}>More</Text>
             </Button>

@@ -1,24 +1,24 @@
 import React, { Component } from "react";
 import { StackNavigator } from "react-navigation";
 import { Image, ScrollView } from "react-native";
-import SearchBar from "./Screens/SearchBar";
-import CardList from "./Screens/CardList";
+import HomeScreen from "./Screens/HomeScreen";
+import SingleItem from "./Screens/SingleItem";
 
 const RootNavigator = StackNavigator(
   {
     Home: { screen: HomeScreen },
     SingleItem: { screen: SingleItem },
-    SingleType: { scren: CardList },
+    // Type: { screen: TypeScreen }
   },
   {
-    initialRouteName: 'Home'
+    initialRouteName: "Home"
   }
 );
 
 export default class App extends Component {
   render() {
     return (
-      <RootNavigator />
-    );
+    <RootNavigator />
+  );
   }
 }

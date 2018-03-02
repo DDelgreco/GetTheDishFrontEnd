@@ -6,7 +6,7 @@ import FoodTypeCard from '../components/FoodTypeCard'
 export default class FoodType extends Component {
 
   static navigationOptions = {
-    title: "Food Types"
+    title: "Food "
 }
   constructor(props) {
     super(props);

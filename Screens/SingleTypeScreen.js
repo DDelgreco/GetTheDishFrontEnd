@@ -3,6 +3,8 @@ import { ScrollView } from "react-native";
 import { Button, Text } from "native-base";
 import ItemCard from '../components/ItemCard';
 
+
+
 export default class SingleType extends Component {
 
     
@@ -21,9 +23,10 @@ export default class SingleType extends Component {
     }
 
     async fetchFoods() {
+        let id=(this.props.navigation.state.params.type.id)
         try {
             let results = await fetch({
-                url: `https://still-harbor-63243.herokuapp.com/api/items/`
+                url: `https://still-harbor-63243.herokuapp.com/api/items/${id}`
             });
             let foods = await results.json();
             return foods;

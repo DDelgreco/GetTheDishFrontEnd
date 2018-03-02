@@ -14,6 +14,7 @@ import {
 } from "native-base";
 
 export default class ItemCard extends Component {
+
   constructor(props) {
     super(props);
     this.food = this.props.food;
@@ -33,22 +34,22 @@ export default class ItemCard extends Component {
           <Right>
             <Body>
               <Text style={{ textAlign: "center", fontSize: 20 }}>
-                {this.food.name}
+                {this.food.Name}
               </Text>
-              <Text style={{ fontSize: 20 }} note>
-                Restaurant
+              <Text style={{ fontSize: 13, textAlign: 'center' }} note>
+                {this.food.RestaurantName}
               </Text>
             </Body>
           </Right>
         </CardItem>
         <CardItem>
           <Body>
-            <Text style={{ fontSize: 10 }}>
-              1000 1st St. Birmingham, AL 35242
+            <Text style={{ fontSize: 15 }}>
+              {this.food.StreetAddress} {this.food.City}, {this.food.State}{" "}
+              {this.food.PostalCode}
             </Text>
-            <Text style={{ fontSize: 10 }} note>
-              {" "}
-              (555)555-5555
+            <Text style={{ fontSize: 15 }} note>
+              {this.food.Phone}
             </Text>
           </Body>
         </CardItem>
@@ -56,14 +57,14 @@ export default class ItemCard extends Component {
           <Left>
             <Button small style={{ backgroundColor: "#0099ff" }}>
               <Icon name="thumbs-up" />
-              <Text>24 </Text>
+              <Text>{this.food.Rating}</Text>
             </Button>
           </Left>
           <Right>
             <Button
               onPress={this.props.Navigate}
               small
-              style={{ backgroundColor: "#0099ff" }}
+              style={{ backgroundColor: "#0099ff"}}
             >
               <Icon />
               <Text style={{ textAlign: "center" }}>More</Text>

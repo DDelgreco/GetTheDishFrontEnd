@@ -1,54 +1,31 @@
 import React, { Component } from "react";
-import { View } from "react-native";
 import { Button, Text } from "native-base";
-import ItemCard from '../components/ItemCard';
+import { ScrollView } from "react-native";
 
 export default class HomeScreen extends Component {
+  static navigationOptions = {
+    title: "Home"
+  };
+  constructor(props) {
+    super(props);
+  }
 
-    static navigationOptions = {
-        title: "Get The Dish"
-    }
+  navigate(type) {
+    this.props.navigation.navigate("FoodTypes", { type });
+  }
 
-    constructor(props) {
-        super(props);
-        this.state = { foods: [] };
-    }
-    async componentDidMount() {
-        let foods = await this.fetchFoods();
-        this.setState({ foods });
-    }
-
-    async fetchFoods() {
-        try {
-            let results = await fetch({
-                url: "https://still-harbor-63243.herokuapp.com/api/items/"
-            });
-            let foods = await results.json();
-            return foods;
-        } catch (error) {
-            console.log(error);
-            return [];
-        }
-    }
-    navigate(food) {
-        this.props.navigation.navigate("SingleItem", { food });
-    }
-
-    render() {
-        return (
-            <View>
-                {this.state.foods.map((food, index) => {
-                    return (
-                        <ItemCard
-                            key={index}
-                            food={food}
-                            Navigate={() => {
-                                this.navigate(food)
-                            }}
-                        />
-                    );
-                })}
-            </View>
-        );
-    }
+  render() {
+    const { navigate } = this.props.navigation;
+    return (
+      <ScrollView>
+        <Button
+          large
+          style={{ alignSelf: "center", margin: 30 }}
+          onPress={() => navigate("FoodTypes")}
+        >
+          <Text>Show Food Types</Text>
+        </Button>
+      </ScrollView>
+    );
+  }
 }

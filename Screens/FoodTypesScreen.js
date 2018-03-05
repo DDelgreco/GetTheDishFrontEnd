@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import { ScrollView } from "react-native";
 import { Text } from "native-base";
 import FoodTypeCard from '../components/FoodTypeCard'
+import SearchBar from '../components/SearchBar';
 
 export default class FoodType extends Component {
 
   static navigationOptions = {
-    title: "Food "
+    title: "Food Types "
 }
   constructor(props) {
     super(props);
@@ -35,6 +36,7 @@ export default class FoodType extends Component {
   render() {
     return (
       <ScrollView>
+        <SearchBar />
         <Text style={{ textAlign: "center" }} />
         {this.state.types.map((type, index) => {
           return (

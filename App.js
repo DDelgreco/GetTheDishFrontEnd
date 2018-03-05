@@ -12,7 +12,6 @@ const RootNavigator = StackNavigator(
     SingleItem: { screen: SingleItem },
     SingleType: { screen: SingleType},
     FoodTypes: { screen: FoodTypes}
-    // Type: { screen: TypeScreen }
   },
   {
     initialRouteName: "Home"

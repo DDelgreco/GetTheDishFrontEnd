@@ -12,9 +12,9 @@ import {
   Body,
   Right
 } from "native-base";
+import RatingButton from "../components/RatingButton";
 
 export default class ItemCard extends Component {
-
   constructor(props) {
     super(props);
     this.food = this.props.food;
@@ -36,7 +36,7 @@ export default class ItemCard extends Component {
               <Text style={{ textAlign: "center", fontSize: 20 }}>
                 {this.food.Name}
               </Text>
-              <Text style={{ fontSize: 13, textAlign: 'center' }} note>
+              <Text style={{ fontSize: 13, textAlign: "center" }} note>
                 {this.food.RestaurantName}
               </Text>
             </Body>
@@ -55,16 +55,18 @@ export default class ItemCard extends Component {
         </CardItem>
         <CardItem>
           <Left>
-            <Button small style={{ backgroundColor: "#0099ff" }}>
-              <Icon name="thumbs-up" />
-              <Text>{this.food.Rating}</Text>
-            </Button>
+            <RatingButton
+              id={this.food.id}
+              buttonStyle={{ backgroundColor: "#0099ff", height: 30 }}
+              textStyle={{ fontSize: 14 }}
+              iconName={"thumbs-up"}
+            />
           </Left>
           <Right>
             <Button
               onPress={this.props.Navigate}
               small
-              style={{ backgroundColor: "#0099ff"}}
+              style={{ backgroundColor: "#0099ff" }}
             >
               <Icon />
               <Text style={{ textAlign: "center" }}>More</Text>

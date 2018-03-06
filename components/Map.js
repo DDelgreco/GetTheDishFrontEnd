@@ -12,11 +12,10 @@ export default class Map extends Component {
         region={{
           latitude: this.props.latitude,
           longitude: this.props.longitude,
-          latitudeDelta: 0.1,
-          longitudeDelta: 0.1
+          latitudeDelta: 0.01,
+          longitudeDelta: 0.01
         }}
         style={{ height: "100%", width: "100%" }}
-        cacheEnabled={true}
       />
     );
   }

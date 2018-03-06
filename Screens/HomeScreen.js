@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { Button, Text } from "native-base";
-import { ScrollView } from "react-native";
-import SearchBar from '../components/SearchBar'
+import { Button, Text, Icon, Header } from "native-base";
+import { ScrollView, View } from "react-native";
+import NavBar from "../components/NavBar";
+import HotItems from "../components/HotItems";
+import LatestItems from "../components/LatestItems";
 
 export default class HomeScreen extends Component {
   static navigationOptions = {
@@ -11,23 +13,59 @@ export default class HomeScreen extends Component {
     super(props);
   }
 
-  navigate(type) {
-    this.props.navigation.navigate("FoodTypes", { type });
+  navigate() {
+    this.props.navigation.navigate("FoodTypes");
+  }
+  toHome() {
+    this.props.navigation.navigate("Home");
+  }
+  toTypes() {
+    this.props.navigation.navigate("FoodTypes");
+  }
+  toNewItem() {
+    this.props.navigation.navigate("NewItem");
   }
 
   render() {
-    const { navigate } = this.props.navigation;
+    // const { navigate } = this.props.navigation;
     return (
-      <ScrollView>
-        <SearchBar />
-        <Button
-          large
-          style={{ alignSelf: "center", margin: 30 }}
-          onPress={() => navigate("FoodTypes")}
-        >
-          <Text>Show Food Types</Text>
-        </Button>
-      </ScrollView>
+      <View style={{ flex: 1 }}>
+        <ScrollView>
+          <Header
+            style={{
+              width: "100%",
+              textAlign: "center",
+              backgroundColor: "dimgray"
+            }}
+          >
+            <Icon name="ios-flame" style={{ fontSize: 30, color: "white" }} />
+            <Text style={{ fontSize: 20, fontWeight: 'bold', color: "white" }}>   Hot Items</Text>
+          </Header>
+          <HotItems />
+          <Header
+            style={{
+              width: "100%",
+              textAlign: "center",
+              backgroundColor: "dimgray"
+            }}
+          >
+            <Icon name="ios-timer" style={{ fontSize: 30, color: "white" }} />
+            <Text style={{ fontSize: 20, fontWeight: 'bold', color: "white" }}>   Latest Items</Text>
+          </Header>
+          <LatestItems />
+        </ScrollView>
+        <NavBar
+          Home={() => {
+            this.toHome();
+          }}
+          Types={() => {
+            this.toTypes();
+          }}
+          NewItem={() => {
+            this.toNewItem();
+          }}
+        />
+      </View>
     );
   }
 }

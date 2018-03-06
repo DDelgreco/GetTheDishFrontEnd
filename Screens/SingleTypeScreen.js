@@ -1,17 +1,27 @@
 import React, { Component } from "react";
-import { ScrollView } from "react-native";
+import { ScrollView, View } from "react-native";
 import { Button, Text } from "native-base";
 import ItemCard from "../components/ItemCard";
-import SearchBar from "../components/SearchBar";
+
+import NavBar from "../components/NavBar";
 
 export default class SingleType extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: navigation.state.params.type.name
   });
+  toHome() {
+    this.props.navigation.navigate("Home");
+  }
+  toTypes() {
+    this.props.navigation.navigate("FoodTypes");
+  }
+  toNewItem() {
+    this.props.navigation.navigate("NewItem");
+  }
 
   constructor(props) {
     super(props);
-    this.state = { foods: []};
+    this.state = { foods: [] };
   }
   async componentDidMount() {
     let foods = await this.fetchFoods();
@@ -37,20 +47,30 @@ export default class SingleType extends Component {
 
   render() {
     return (
-      <ScrollView>
-          <SearchBar />
-        {this.state.foods.map((food, index) => {
-          return (
-            <ItemCard
-              key={index}
-              food={food}
-              Navigate={() => {
-                this.navigate(food);
-              }}
-            />
-          );
-        })}
-      </ScrollView>
+      <View style={{ flex: 1 }}>
+        <ScrollView>
+          {this.state.foods.map((food, index) => {
+            return (
+              <ItemCard
+                key={index}
+                food={food}
+                Navigate={() => {
+                  this.navigate(food);
+                }}
+              />
+            );
+          })}
+        </ScrollView>
+        <NavBar Home={() => {
+            this.toHome();
+          }}
+          Types={() => {
+            this.toTypes();
+          }}
+          NewItem={() => {
+            this.toNewItem();
+          }}/>
+      </View>
     );
   }
 }

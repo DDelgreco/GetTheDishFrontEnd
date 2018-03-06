@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import { ScrollView } from "react-native";
+import { ScrollView, View } from "react-native";
 import { Text } from "native-base";
-import FoodTypeCard from '../components/FoodTypeCard'
-import SearchBar from '../components/SearchBar';
+import FoodTypeCard from "../components/FoodTypeCard";
+
+import NavBar from "../components/NavBar";
 
 export default class FoodType extends Component {
-
   static navigationOptions = {
     title: "Food Types "
-}
+  };
   constructor(props) {
     super(props);
     this.state = { types: [], title: "" };
@@ -33,23 +33,32 @@ export default class FoodType extends Component {
   navigate(type) {
     this.props.navigation.navigate("SingleType", { type });
   }
+  toHome() {
+    this.props.navigation.navigate("Home");
+  }
   render() {
     return (
-      <ScrollView>
-        <SearchBar />
-        <Text style={{ textAlign: "center" }} />
-        {this.state.types.map((type, index) => {
-          return (
-            <FoodTypeCard
-              key={index}
-              type={type}
-              Navigate={() => {
-                this.navigate(type);
-              }}
-            />
-          );
-        })}
-      </ScrollView>
+      <View style={{ flex: 1 }}>
+        <ScrollView>
+          <Text style={{ textAlign: "center" }} />
+          {this.state.types.map((type, index) => {
+            return (
+              <FoodTypeCard
+                key={index}
+                type={type}
+                Navigate={() => {
+                  this.navigate(type);
+                }}
+              />
+            );
+          })}
+        </ScrollView>
+        <NavBar
+          Home={() => {
+            this.toHome();
+          }}
+        />
+      </View>
     );
   }
 }

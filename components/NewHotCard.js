@@ -18,6 +18,7 @@ export default class NewHotCard extends Component {
   constructor(props) {
     super(props);
     this.food = this.props.food;
+    console.log(this.food);
   }
   render() {
     return (
@@ -25,8 +26,9 @@ export default class NewHotCard extends Component {
         <CardItem>
           <Left>
             <Body>
-              <Thumbnail square
-                style={{ height: 40, width: 40 }}
+              <Thumbnail
+                square
+                style={{ height: 60, width: 60 }}
                 source={require("../pictures/food.png")}
               />
             </Body>
@@ -46,19 +48,18 @@ export default class NewHotCard extends Component {
           <Left>
             <RatingButton
               id={this.food.id}
-              buttonStyle={{ backgroundColor: "#0099ff", height: 20 }}
-              textStyle={{ fontSize: 10 }}
+              buttonStyle={{ backgroundColor: "#0099ff", height: 30 }}
+              textStyle={{ fontSize: 20 }}
               iconName={"thumbs-up"}
             />
           </Left>
           <Right>
             <Button
-              onPress={this.props.Navigate}
-        
-              style={{ backgroundColor: "#0099ff", height: 20}}
+              onPress={this.props.ToSingleItem}
+              style={{ backgroundColor: "#0099ff", height: 30 }}
             >
               <Icon />
-              <Text style={{ fontSize: 10 }}>More</Text>
+              <Text style={{ fontSize: 20 }}>More</Text>
             </Button>
           </Right>
         </CardItem>

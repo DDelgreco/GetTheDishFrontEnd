@@ -16,7 +16,6 @@ export default class HotItems extends Component {
   }
 
   async fetchHottest() {
-
     try {
       let results = await fetch({
         url: `https://still-harbor-63243.herokuapp.com/api/homescreen/hottest`
@@ -28,14 +27,22 @@ export default class HotItems extends Component {
       return [];
     }
   }
+
   render() {
     return (
-        <View>
-      <ScrollView>
-        {this.state.hottest.map((food, index) => {
-          return <NewHotCard key={index} food={food} />;
-        })}
-      </ScrollView>
+      <View>
+        <ScrollView>
+          {this.state.hottest.map((food, index) => {
+            console.log(food);
+            return (
+              <NewHotCard
+                key={index}
+                food={food}
+                ToSingleItem={this.props.ToSingleItem}
+              />
+            );
+          })}
+        </ScrollView>
       </View>
     );
   }

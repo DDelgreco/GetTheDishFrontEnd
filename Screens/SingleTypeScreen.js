@@ -61,7 +61,8 @@ export default class SingleType extends Component {
             );
           })}
         </ScrollView>
-        <NavBar Home={() => {
+        <NavBar
+          Home={() => {
             this.toHome();
           }}
           Types={() => {
@@ -69,7 +70,8 @@ export default class SingleType extends Component {
           }}
           NewItem={() => {
             this.toNewItem();
-          }}/>
+          }}
+        />
       </View>
     );
   }

@@ -11,6 +11,7 @@ export default class HomeScreen extends Component {
   };
   constructor(props) {
     super(props);
+    this.food=this.props.food;
   }
 
   navigate() {
@@ -25,6 +26,9 @@ export default class HomeScreen extends Component {
   toNewItem() {
     this.props.navigation.navigate("NewItem");
   }
+  toSingleItem(food) {
+    this.props.navigation.navigate("SingleItem", { food });
+  }
 
   render() {
     // const { navigate } = this.props.navigation;
@@ -34,23 +38,30 @@ export default class HomeScreen extends Component {
           <Header
             style={{
               width: "100%",
-              textAlign: "center",
               backgroundColor: "dimgray"
             }}
           >
-            <Icon name="ios-flame" style={{ fontSize: 30, color: "white" }} />
-            <Text style={{ fontSize: 20, fontWeight: 'bold', color: "white" }}>   Hot Items</Text>
+            <Icon name="ios-flame" style={{ fontSize: 30, color: "orange" }} />
+            <Text style={{ fontSize: 20, fontWeight: "bold", color: "white" }}>
+              {" "}
+              Hot Items
+            </Text>
           </Header>
-          <HotItems />
+          <HotItems ToSingleItem={() => {
+            this.toSingleItem();
+          }}/>
           <Header
             style={{
               width: "100%",
-              textAlign: "center",
+
               backgroundColor: "dimgray"
             }}
           >
-            <Icon name="ios-timer" style={{ fontSize: 30, color: "white" }} />
-            <Text style={{ fontSize: 20, fontWeight: 'bold', color: "white" }}>   Latest Items</Text>
+            <Icon name="ios-timer" style={{ fontSize: 30, color: "orange" }} />
+            <Text style={{ fontSize: 20, fontWeight: "bold", color: "white" }}>
+              {" "}
+              Latest Items
+            </Text>
           </Header>
           <LatestItems />
         </ScrollView>

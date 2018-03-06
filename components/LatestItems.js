@@ -16,7 +16,6 @@ export default class LatestItems extends Component {
   }
 
   async fetchLatest() {
-
     try {
       let results = await fetch({
         url: `https://still-harbor-63243.herokuapp.com/api/homescreen/latest`
@@ -28,14 +27,25 @@ export default class LatestItems extends Component {
       return [];
     }
   }
+  navigate(food) {
+    this.props.navigation.navigate("SingleItem", { food });
+  }
   render() {
     return (
-        <View>
-      <ScrollView>
-        {this.state.latest.map((food, index) => {
-          return <NewHotCard key={index} food={food} />;
-        })}
-      </ScrollView>
+      <View>
+        <ScrollView>
+          {this.state.latest.map((food, index) => {
+            return (
+              <NewHotCard
+                key={index}
+                food={food}
+                Navigate={() => {
+                  this.navigate(food);
+                }}
+              />
+            );
+          })}
+        </ScrollView>
       </View>
     );
   }

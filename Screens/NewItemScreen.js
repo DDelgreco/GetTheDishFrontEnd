@@ -26,15 +26,15 @@ export default class NewItem extends Component {
       <View style={{ flex: 1 }}>
         <ScrollView>
           <Form>
-            <Item floatingLabel>
+            <Item border>
               <Label>Name of Dish</Label>
               <Input />
             </Item>
-            <Item floatingLabel>
+            <Item >
               <Label>Restaurant</Label>
               <Input />
             </Item>
-            <Item floatingLabel>
+            <Item >
               <Label>Price</Label>
               <Input />
             </Item>

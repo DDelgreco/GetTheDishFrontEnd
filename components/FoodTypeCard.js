@@ -22,7 +22,7 @@ export default class FoodTypeCard extends Component {
       <Card medium style={{ padding: 20 }}>
         <CardItem>
           <Left>
-            <Text style={{ fontSize: 20 }}>{this.type.name}</Text>
+            <Text style={{ fontSize: 20 }}>{this.props.name}</Text>
           </Left>
           <Right>
             <Button

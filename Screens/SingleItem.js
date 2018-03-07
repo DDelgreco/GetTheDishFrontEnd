@@ -3,6 +3,7 @@ import { ScrollView, View } from "react-native";
 import SingleItemCard from "../components/SingleItemCard";
 import NavBar from "../components/NavBar";
 
+
 export default class SingleItem extends Component {
 
   toHome() {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ScrollView, View } from "react-native";
+import { ScrollView, View, StyleSheet } from "react-native";
 import { Text, Header, Item, Input, Icon, Button } from "native-base";
 import FoodTypeCard from "../components/FoodTypeCard";
 
@@ -48,7 +48,7 @@ export default class FoodType extends Component {
       <View style={{ flex: 1 }}>
         <ScrollView>
           <View>
-            <Header searchBar rounded style={{ backgroundColor: "#0099ff" }}>
+            <Header searchBar rounded style={styles.Header}>
               <Item>
                 <Icon name="ios-search" />
                 <Input
@@ -61,7 +61,7 @@ export default class FoodType extends Component {
               </Button>
             </Header>
           </View>
-          <Text style={{ textAlign: "center" }} />
+          <Text style={styles.Text} />
           {filteredTypes.map((type, index) => {
             return (
               <FoodTypeCard
@@ -84,3 +84,12 @@ export default class FoodType extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  Header: {
+    backgroundColor: "#0099ff"
+  },
+  Text: {
+    textAlign: "center"
+  }
+});

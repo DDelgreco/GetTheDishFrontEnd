@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, Text, Icon, Header } from "native-base";
-import { ScrollView, View } from "react-native";
+import { ScrollView, View, StyleSheet } from "react-native";
 import NavBar from "../components/NavBar";
 import HotItems from "../components/HotItems";
 import LatestItems from "../components/LatestItems";
@@ -11,7 +11,6 @@ export default class HomeScreen extends Component {
   };
   constructor(props) {
     super(props);
-    this.food=this.props.food;
   }
 
   navigate() {
@@ -27,7 +26,7 @@ export default class HomeScreen extends Component {
     this.props.navigation.navigate("NewItem");
   }
   toSingleItem(food) {
-    this.props.navigation.navigate("SingleItem", { food });
+    this.props.navigation.navigate("NewHotSingles");
   }
 
   render() {
@@ -35,33 +34,18 @@ export default class HomeScreen extends Component {
     return (
       <View style={{ flex: 1 }}>
         <ScrollView>
-          <Header
-            style={{
-              width: "100%",
-              backgroundColor: "dimgray"
-            }}
-          >
-            <Icon name="ios-flame" style={{ fontSize: 30, color: "orange" }} />
-            <Text style={{ fontSize: 20, fontWeight: "bold", color: "white" }}>
-              {" "}
-              Hot Items
-            </Text>
+          <Header style={styles.Header}>
+            <Icon name="ios-flame" style={styles.Icon} />
+            <Text style={styles.Text}> Hot Items</Text>
           </Header>
-          <HotItems ToSingleItem={() => {
-            this.toSingleItem();
-          }}/>
-          <Header
-            style={{
-              width: "100%",
-
-              backgroundColor: "dimgray"
+          <HotItems
+            ToSingleItem={() => {
+              this.toSingleItem();
             }}
-          >
-            <Icon name="ios-timer" style={{ fontSize: 30, color: "orange" }} />
-            <Text style={{ fontSize: 20, fontWeight: "bold", color: "white" }}>
-              {" "}
-              Latest Items
-            </Text>
+          />
+          <Header style={styles.Header}>
+            <Icon name="ios-timer" style={styles.Icon} />
+            <Text style={styles.Text}> Latest Items</Text>
           </Header>
           <LatestItems />
         </ScrollView>
@@ -80,3 +64,19 @@ export default class HomeScreen extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  Header: {
+    width: "100%",
+    backgroundColor: "dimgray"
+  },
+  Icon: {
+    fontSize: 30,
+    color: "orange"
+  },
+  Text: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "white"
+  }
+});

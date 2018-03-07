@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image, View } from "react-native";
+import { Image, View, StyleSheet } from "react-native";
 import {
   Content,
   Card,
@@ -26,40 +26,51 @@ export default class NewHotCard extends Component {
         <CardItem>
           <Left>
             <Body>
-              <Thumbnail
-                square
-                style={{ height: 60, width: 60 }}
+              <Thumbnail square
+                style={styles.Thumbnail}
                 source={require("../pictures/food.png")}
               />
             </Body>
           </Left>
           <Right>
             <Body>
-              <Text style={{ textAlign: "center", fontSize: 20 }}>
+              <Text style={styles.Name}>
                 {this.food.Name}
               </Text>
-              <Text style={{ fontSize: 15, textAlign: "center" }} note>
+              <Text style={styles.RestaurantName} note>
                 {this.food.RestaurantName}
               </Text>
             </Body>
           </Right>
         </CardItem>
         <CardItem>
+          <Body>
+            <Text style={styles.Location}>
+              {this.food.StreetAddress} {this.food.City}, {this.food.State}{" "}
+              {this.food.PostalCode}
+            </Text>
+            <Text style={styles.Phone} note>
+              {this.food.Phone}
+            </Text>
+          </Body>
+        </CardItem>
+        <CardItem>
           <Left>
             <RatingButton
               id={this.food.id}
-              buttonStyle={{ backgroundColor: "#0099ff", height: 30 }}
-              textStyle={{ fontSize: 20 }}
+              buttonStyle={styles.RatingButton}
+              textStyle={styles.RatingText}
               iconName={"thumbs-up"}
             />
           </Left>
           <Right>
             <Button
-              onPress={this.props.ToSingleItem}
-              style={{ backgroundColor: "#0099ff", height: 30 }}
+              onPress={this.props.Navigate}
+              small
+              style={styles.MoreButton}
             >
               <Icon />
-              <Text style={{ fontSize: 20 }}>More</Text>
+              <Text style={styles.MoreButtonText}>More</Text>
             </Button>
           </Right>
         </CardItem>
@@ -67,3 +78,17 @@ export default class NewHotCard extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  ThumbNail: { height: 100, width: 100 },
+  Name: { textAlign: "center", fontSize: 20 },
+  RestaurantName: { fontSize: 13, textAlign: "center" },
+  Location: { fontSize: 15 },
+  Phone: { fontSize: 15 },
+  RatingButton: { backgroundColor: "#0099ff", height: 30 },
+  RatingText: { fontSize: 14 },
+  MoreButton: { backgroundColor: "#0099ff" },
+  MoreButtonText: { textAlign: "center" }
+
+});
+

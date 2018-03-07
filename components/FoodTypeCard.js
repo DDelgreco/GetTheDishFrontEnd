@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
 import {
   Content,
   Card,
@@ -19,19 +19,19 @@ export default class FoodTypeCard extends Component {
   }
   render() {
     return (
-      <Card medium style={{ padding: 20 }}>
+      <Card medium style={styles.Card}>
         <CardItem>
           <Left>
-            <Text style={{ fontSize: 20 }}>{this.props.name}</Text>
+            <Text style={styles.fontSize}>{this.props.name}</Text>
           </Left>
           <Right>
             <Button
               small
               transparent
               onPress={this.props.Navigate}
-              style={{ alignSelf: "flex-end" }}
+              style={styles.Button}
             >
-              <Icon style={{ fontSize: 40 }} name="ios-arrow-forward-outline" />
+              <Icon style={styles.Icon} name="ios-arrow-forward-outline" />
             </Button>
           </Right>
         </CardItem>
@@ -39,3 +39,18 @@ export default class FoodTypeCard extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  Card: {
+    padding: 20
+  },
+  Text: {
+    fontSize: 20
+  },
+  Button: {
+    alignSelf: "flex-end"
+  },
+  Icon: {
+    fontSize: 40
+  }
+});

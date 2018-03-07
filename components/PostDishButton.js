@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button, Icon, Text } from "native-base";
+import {StyleSheet} from "react-native";
 
 export default class PostDishButton extends Component {
   constructor(props) {
@@ -31,9 +32,14 @@ export default class PostDishButton extends Component {
 
   render() {
     return (
-      <Button large style={{alignSelf: 'center', margin: 30}}>
+      <Button large style={styles.Button}>
         <Text>Post Dish</Text>
       </Button>
     );
   }
 }
+
+const styles = StyleSheet.create({
+ Button: {alignSelf: 'center', margin: 30}
+  });
+  

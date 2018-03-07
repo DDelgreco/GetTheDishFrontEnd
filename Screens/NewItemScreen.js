@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { ScrollView, View } from "react-native";
 import { Form, Item, Input, Label, Button, Text } from "native-base";
-import DropDown from "../components/DropDown";
 import PostDishButton from "../components/PostDishButton";
 import NavBar from "../components/NavBar";
 
@@ -38,7 +37,6 @@ export default class NewItem extends Component {
               <Label>Price</Label>
               <Input />
             </Item>
-            {/* <DropDown /> */}
             <PostDishButton />
           </Form>
         </ScrollView>

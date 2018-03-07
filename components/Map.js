@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import { Image, View } from "react-native";
+import { Image, View, StyleSheet } from "react-native";
 import MapView from "react-native-maps";
+
+
+
 
 export default class Map extends Component {
   constructor(props) {
@@ -15,8 +18,12 @@ export default class Map extends Component {
           latitudeDelta: 0.01,
           longitudeDelta: 0.01
         }}
-        style={{ height: "100%", width: "100%" }}
+        style={styles.Map}
       />
     );
   }
 }
+
+const styles = StyleSheet.create({
+Map: { height: 300, width: '100%', alignSelf: 'center' }
+});

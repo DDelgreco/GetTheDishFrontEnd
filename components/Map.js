@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import { Image, View, StyleSheet } from "react-native";
-import MapView from "react-native-maps";
-
-
-
+import { MapView, Marker } from "react-native-maps";
 
 export default class Map extends Component {
   constructor(props) {
@@ -25,5 +22,5 @@ export default class Map extends Component {
 }
 
 const styles = StyleSheet.create({
-Map: { height: 300, width: '100%', alignSelf: 'center' }
+  Map: { height: 300, width: "100%", alignSelf: "center" }
 });

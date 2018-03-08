@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, ScrollView, Text, Image, StyleSheet } from "react-native";
 import { Body, Card, CardItem, Left, Right, Button } from "native-base";
-import MapView from "react-native-maps";
+//import MapView from "react-native-maps";
 import Map from "../components/Map";
 import RatingButton from "../components/RatingButton";
 
@@ -17,7 +17,7 @@ export default class SingleItemCard extends Component {
           <CardItem>
             <Body>
               <Text style={styles.Name}>{this.food.Name}</Text>
-              <Text style={styles.RestaurantName} note>
+              <Text note style={styles.RestaurantName}>
                 {this.food.RestaurantName}
               </Text>
             </Body>

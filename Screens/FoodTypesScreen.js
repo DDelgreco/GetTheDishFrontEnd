@@ -31,10 +31,19 @@ export default class FoodType extends Component {
     }
   }
   navigate(type) {
-    this.props.navigation.navigate("SingleType", { type });
+    this.props.navigation.navigate("SingleType", {type});
   }
   toHome() {
     this.props.navigation.navigate("Home");
+  }
+  toTypes() {
+    this.props.navigation.navigate("FoodTypes");
+  }
+  toNewItem() {
+    this.props.navigation.navigate("NewItem");
+  }
+  toLogIn(){
+    this.props.navigation.navigate("LogIn");
   }
   render() {
     let filteredTypes = this.state.types;
@@ -78,6 +87,15 @@ export default class FoodType extends Component {
         <NavBar
           Home={() => {
             this.toHome();
+          }}
+          Types={() => {
+            this.toTypes();
+          }}
+          NewItem={() => {
+            this.toNewItem();
+          }}
+          Profile={() => {
+              this.toLogIn();
           }}
         />
       </View>

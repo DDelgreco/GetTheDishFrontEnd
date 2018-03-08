@@ -20,6 +20,10 @@ export default class NewItem extends Component {
   toNewItem() {
     this.props.navigation.navigate("NewItem");
   }
+  toLogIn(){
+    this.props.navigation.navigate("LogIn");
+  }
+
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -50,6 +54,9 @@ export default class NewItem extends Component {
           NewItem={() => {
             this.toNewItem();
           }}
+          Profile={() => {
+            this.toLogIn();
+        }}
         />
       </View>
     );

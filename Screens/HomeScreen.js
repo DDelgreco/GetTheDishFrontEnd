@@ -13,8 +13,8 @@ export default class HomeScreen extends Component {
     super(props);
   }
 
-  navigate() {
-    this.props.navigation.navigate("FoodTypes");
+  toSingleItem(food) {
+    this.props.navigation.navigate("NewHotSingles");
   }
   toHome() {
     this.props.navigation.navigate("Home");
@@ -25,14 +25,15 @@ export default class HomeScreen extends Component {
   toNewItem() {
     this.props.navigation.navigate("NewItem");
   }
-  toSingleItem(food) {
-    this.props.navigation.navigate("NewHotSingles");
+  
+  toLogIn() {
+    this.props.navigation.navigate("LogIn");
   }
 
   render() {
     // const { navigate } = this.props.navigation;
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.View}>
         <ScrollView>
           <Header style={styles.Header}>
             <Icon name="ios-flame" style={styles.Icon} />
@@ -59,6 +60,9 @@ export default class HomeScreen extends Component {
           NewItem={() => {
             this.toNewItem();
           }}
+          Profile={() => {
+            this.toLogIn();
+          }}
         />
       </View>
     );
@@ -66,16 +70,17 @@ export default class HomeScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+  View: { flex: 1, backgroundColor: "dimgray" },
   Header: {
     width: "100%",
     backgroundColor: "dimgray"
   },
   Icon: {
-    fontSize: 30,
+    fontSize: 40,
     color: "orange"
   },
   Text: {
-    fontSize: 20,
+    fontSize: 30,
     fontWeight: "bold",
     color: "white"
   }

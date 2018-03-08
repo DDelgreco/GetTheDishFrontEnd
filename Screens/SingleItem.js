@@ -15,6 +15,11 @@ export default class SingleItem extends Component {
   toNewItem() {
     this.props.navigation.navigate("NewItem");
   }
+ 
+  toLogIn(){
+    this.props.navigation.navigate("LogIn");
+  }
+
   constructor(props) {
     super(props);
     this.food = this.props.navigation.state.params.food;
@@ -41,6 +46,9 @@ export default class SingleItem extends Component {
           NewItem={() => {
             this.toNewItem();
           }}
+          Profile={() => {
+            this.toLogIn();
+        }}
         />
       </View>
     );

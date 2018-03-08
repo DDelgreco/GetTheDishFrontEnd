@@ -9,6 +9,9 @@ export default class SingleType extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: navigation.state.params.type.name
   });
+  navigate(food) {
+    this.props.navigation.navigate("SingleFood", (food));
+  }
   toHome() {
     this.props.navigation.navigate("Home");
   }
@@ -18,7 +21,12 @@ export default class SingleType extends Component {
   toNewItem() {
     this.props.navigation.navigate("NewItem");
   }
-
+  toSingleItem(food) {
+    this.props.navigation.navigate("NewHotSingles");
+  }
+  toLogIn(){
+    this.props.navigation.navigate("LogIn");
+  }
   constructor(props) {
     super(props);
     this.state = { foods: [] };
@@ -44,7 +52,18 @@ export default class SingleType extends Component {
   navigate(food) {
     this.props.navigation.navigate("SingleItem", { food });
   }
-
+  toHome() {
+    this.props.navigation.navigate("Home");
+  }
+  toTypes() {
+    this.props.navigation.navigate("FoodTypes");
+  }
+  toNewItem() {
+    this.props.navigation.navigate("NewItem");
+  }
+  toLogIn() {
+    this.props.navigation.navigate("LogIn");
+  }
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -71,6 +90,9 @@ export default class SingleType extends Component {
           NewItem={() => {
             this.toNewItem();
           }}
+          Profile={() => {
+            this.toLogIn();
+        }}
         />
       </View>
     );

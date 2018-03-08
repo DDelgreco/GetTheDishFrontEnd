@@ -23,7 +23,7 @@ export default class NavBar extends Component {
             <Icon name="ios-add" />
             <Text>New Dish</Text>
           </Button>
-          <Button>
+          <Button onPress={this.props.Profile}>
             <Icon name="person" />
             <Text>Profile</Text>
           </Button>

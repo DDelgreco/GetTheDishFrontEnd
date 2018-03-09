@@ -1,22 +1,28 @@
 import React, { Component } from "react";
 import { View, ScrollView, Text, Image, StyleSheet } from "react-native";
-import { Body, Card, CardItem, Left, Right, Button } from "native-base";
+import { Body, Card, CardItem, Left, Right, Button, Icon } from "native-base";
 //import MapView from "react-native-maps";
 import Map from "../components/Map";
 import RatingButton from "../components/RatingButton";
 import openMap from "react-native-open-maps";
+import call from "react-native-phone-call";
 
 export default class SingleItemCard extends Component {
   constructor(props) {
     super(props);
     this.food = this.props.food;
   }
+
   toMaps(lat, long) {
     openMap({
       latitude: lat,
       longitude: long
     });
   }
+  callPhone(number) {
+    console.log(number);
+  }
+
   render() {
     return (
       <Card>
@@ -58,7 +64,19 @@ export default class SingleItemCard extends Component {
         </View>
         <View>
           <CardItem>
-            <Body>
+            <Left>
+              <Button
+                info
+                styles={styles.RatingButton}
+                onPress={() => {
+                  this.callPhone(this.food.CallPhone);
+                }}
+              >
+                <Icon name="md-call" />
+                <Text style={styles.RatingText}>Call</Text>
+              </Button>
+            </Left>
+            <Right>
               <RatingButton
                 id={this.food.id}
                 buttonStyle={styles.RatingButton}
@@ -66,7 +84,7 @@ export default class SingleItemCard extends Component {
                 textStyle={styles.RatingText}
                 iconStyle={styles.RatingIcon}
               />
-            </Body>
+            </Right>
           </CardItem>
           <CardItem />
         </View>
@@ -102,7 +120,7 @@ const styles = StyleSheet.create({
   Address: { fontSize: 15 },
   Price: { fontSize: 30 },
   RatingButton: { alignSelf: "center" },
-  RatingText: { fontSize: 20, color: "white" },
+  RatingText: { fontSize: 20, color: "white", padding: 10 },
   RatingIcon: { fontSize: 30 },
   MapButton: { alignSelf: "center", padding: 10, margin: 10 }
 });

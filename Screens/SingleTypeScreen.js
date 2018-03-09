@@ -66,7 +66,7 @@ export default class SingleType extends Component {
   }
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1 , backgroundColor: 'dimgrey'}}>
         <ScrollView>
           {this.state.foods.map((food, index) => {
             return (

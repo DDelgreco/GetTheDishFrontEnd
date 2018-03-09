@@ -25,7 +25,7 @@ export default class ItemCard extends Component {
         <CardItem>
           <Left>
             <Body>
-              <Thumbnail
+              <Thumbnail square
                 style={styles.Thumbnail}
                 source={require("../pictures/food.png")}
               />
@@ -65,7 +65,7 @@ export default class ItemCard extends Component {
           <Right>
             <Button
               onPress={this.props.Navigate}
-              small
+              small info
               style={styles.MoreButton}
             >
               <Icon />
@@ -84,9 +84,8 @@ const styles = StyleSheet.create({
   RestaurantName: { fontSize: 13, textAlign: "center" },
   Location: { fontSize: 15 },
   Phone: { fontSize: 15 },
-  RatingButton: { backgroundColor: "#0099ff", height: 30 },
+  RatingButton: { height: 30 },
   RatingText: { fontSize: 14 },
-  MoreButton: { backgroundColor: "#0099ff" },
   MoreButtonText: { textAlign: "center" }
 
 });

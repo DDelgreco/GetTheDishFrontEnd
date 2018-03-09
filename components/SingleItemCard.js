@@ -4,11 +4,18 @@ import { Body, Card, CardItem, Left, Right, Button } from "native-base";
 //import MapView from "react-native-maps";
 import Map from "../components/Map";
 import RatingButton from "../components/RatingButton";
+import openMap from "react-native-open-maps";
 
 export default class SingleItemCard extends Component {
   constructor(props) {
     super(props);
     this.food = this.props.food;
+  }
+  toMaps(lat, long) {
+    openMap({
+      latitude: lat,
+      longitude: long
+    });
   }
   render() {
     return (
@@ -61,7 +68,9 @@ export default class SingleItemCard extends Component {
               />
             </Body>
           </CardItem>
+          <CardItem />
         </View>
+
         <View>
           <CardItem>
             <Body>
@@ -72,6 +81,15 @@ export default class SingleItemCard extends Component {
             </Body>
           </CardItem>
         </View>
+        <Button
+          info
+          style={styles.MapButton}
+          onPress={() => {
+            this.toMaps(this.food.RestLat, this.food.RestLong);
+          }}
+        >
+          <Text style={styles.RatingText}>Open In Maps</Text>
+        </Button>
       </Card>
     );
   }
@@ -84,6 +102,7 @@ const styles = StyleSheet.create({
   Address: { fontSize: 15 },
   Price: { fontSize: 30 },
   RatingButton: { alignSelf: "center" },
-  RatingText: { fontSize: 20, marginTop: 5, color: "white" },
-  RatingIcon: { fontSize: 30 }
+  RatingText: { fontSize: 20, color: "white" },
+  RatingIcon: { fontSize: 30 },
+  MapButton: { alignSelf: "center", padding: 10, margin: 10 }
 });

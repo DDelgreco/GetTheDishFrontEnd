@@ -32,7 +32,7 @@ export default class PostDishButton extends Component {
 
   render() {
     return (
-      <Button large style={styles.Button}>
+      <Button info style={styles.Button}>
         <Text>Post Dish</Text>
       </Button>
     );

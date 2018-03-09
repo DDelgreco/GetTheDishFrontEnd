@@ -44,7 +44,7 @@ export default class RatingButton extends Component {
 
     render() {
         return (
-            <Button
+            <Button info
                 style={this.props.buttonStyle}
                 onPress={() => { this.onClick() }}>
                 <Icon name={this.props.iconName} style={this.props.iconStyle} />

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Header, Form, Item, Input, Label, Button, Text } from "native-base";
-import { StyleSheet, ScrollView, View } from "react-native";
+import { StyleSheet, ScrollView, View, Image } from "react-native";
 import NavBar from "../components/NavBar";
-export default class LogIn extends Component {
+
+export default class SignUp extends Component {
   static navigationOptions = {
     title: "Get The Dish"
   };
@@ -25,7 +26,7 @@ export default class LogIn extends Component {
   toSingleItem(food) {
     this.props.navigation.navigate("NewHotSingles");
   }
-  toLogIn(){
+  toLogIn() {
     this.props.navigation.navigate("LogIn");
   }
 
@@ -34,6 +35,14 @@ export default class LogIn extends Component {
       <View style={styles.View}>
         <ScrollView>
           <Form style={styles.Form}>
+            <Item floatingLabel last>
+              <Label>First Name</Label>
+              <Input />
+            </Item>
+            <Item floatingLabel last>
+              <Label>Last Name</Label>
+              <Input />
+            </Item>
             <Item floatingLabel>
               <Label>E-Mail</Label>
               <Input />
@@ -42,16 +51,15 @@ export default class LogIn extends Component {
               <Label>Password</Label>
               <Input />
             </Item>
+
             <Button info style={styles.Button}>
-              <Text>Log In</Text>
+              <Text>Sign Up</Text>
             </Button>
-            <Item />
           </Form>
-          <Text style={styles.Divider}>________________</Text>
-          <Text style={styles.Text}>Don't have an account?{"\n"}Sign Up!</Text>
-          <Button info style={styles.Button}>
-            <Text>Sign Up</Text>
-          </Button>
+          <Image
+          style={{alignSelf: 'center', height:150, width: 200, marginTop: 20}}
+                source={require("../pictures/a.png")}
+                />
         </ScrollView>
         <NavBar
           Home={() => {
@@ -64,7 +72,7 @@ export default class LogIn extends Component {
             this.toNewItem();
           }}
           Profile={() => {
-              this.toLogIn();
+            this.toLogIn();
           }}
         />
       </View>
@@ -74,12 +82,18 @@ export default class LogIn extends Component {
 
 const styles = StyleSheet.create({
   Button: { alignSelf: "center", margin: 10 },
-  Text: { fontWeight: 'bold',fontSize: 25, textAlign: "center", color: "white", margin: 20 },
+  Text: {
+    fontWeight: "bold",
+    fontSize: 25,
+    textAlign: "center",
+    color: "white",
+    margin: 20
+  },
   Form: {
     backgroundColor: "white",
     width: "90%",
     alignSelf: "center",
-    marginTop: 20
+    marginTop: 30
   },
   View: { backgroundColor: "dimgray", flex: 1 },
   Divider: { fontSize: 40, textAlign: "center", color: "white", margin: 20 }

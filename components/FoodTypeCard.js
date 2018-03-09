@@ -28,6 +28,7 @@ export default class FoodTypeCard extends Component {
             <Button
               small
               transparent
+              info
               onPress={this.props.Navigate}
               style={styles.Button}
             >

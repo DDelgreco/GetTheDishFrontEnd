@@ -54,7 +54,7 @@ export default class FoodType extends Component {
       });
     }
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, backgroundColor: 'dimgrey' }}>
         <ScrollView>
           <View>
             <Header searchBar rounded style={styles.Header}>
@@ -105,7 +105,7 @@ export default class FoodType extends Component {
 
 const styles = StyleSheet.create({
   Header: {
-    backgroundColor: "#0099ff"
+    backgroundColor: "#62B1F6"
   },
   Text: {
     textAlign: "center"

@@ -32,7 +32,7 @@ export default class PostDishButton extends Component {
 
   render() {
     return (
-      <Button large style={styles.Button} onPress={() => this.handleOnPress()}>
+      <Button info large style={styles.Button} onPress={() => this.handleOnPress()}>
         <Text>Post Dish</Text>
       </Button>
     );

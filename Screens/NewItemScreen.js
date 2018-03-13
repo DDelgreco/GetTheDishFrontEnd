@@ -10,9 +10,7 @@ export default class NewItem extends Component {
   static navigationOptions = {
     title: "New Dish"
   };
-  navigate() {
-    this.props.navigation.navigate("FoodTypes");
-  }
+
   toHome() {
     this.props.navigation.navigate("Home");
   }
@@ -56,9 +54,9 @@ export default class NewItem extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.View}>
         <ScrollView>
-          <Form>
+          <Form style={styles.Form}>
             <Item border floatingLabel>
               <Label>Name of Dish</Label>
               <Input
@@ -83,7 +81,12 @@ export default class NewItem extends Component {
               <FoodTypeSearchBar onTypeSelect={this.handleTypeChange} />
             </View>
             <View style={{ zIndex: 1 }}>
-              <PostDishButton item={this.state} />
+              <PostDishButton
+                item={this.state}
+                Home={() => {
+                  this.toHome();
+                }}
+              />
             </View>
           </Form>
         </ScrollView>

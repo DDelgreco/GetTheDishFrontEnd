@@ -78,7 +78,7 @@ export default class RestaurantSearchBar extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 25
+    paddingTop: 25,
   },
   autocompleteContainer: {
     marginLeft: 10,
@@ -89,10 +89,12 @@ const styles = StyleSheet.create({
     marginTop: 8
   },
   listThing: {
-    backgroundColor: "lightgray"
+    backgroundColor: "#62B1F6"
   },
   itemText: {
-    fontSize: 15,
-    margin: 2
+    fontSize: 25,
+    fontWeight: 'bold',
+    margin: 2,
+    color: 'white'
   }
 });

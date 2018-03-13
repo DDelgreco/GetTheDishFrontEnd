@@ -1,38 +1,38 @@
 import React, { Component } from "react";
 import { Button, Icon, Text } from "native-base";
-import {StyleSheet} from "react-native";
+import { StyleSheet } from "react-native";
 
 export default class PostDishButton extends Component {
   constructor(props) {
     super(props);
-    this.state = { foods: [] };
   }
 
-  async onClick() {
-    let foods = await this.PostDish();
-    this.setState({ items });
+  async handleOnPress() {
+    let result = await this.postItem();
+    console.log("It is posted.");
   }
 
-  async postDish() {
+  async postItem() {
     let request = new Request(
-      `https://still-harbor-63243.herokuapp.com/api/items`,
+      `https://still-harbor-63243.herokuapp.com/api/items/checkrest`,
       {
-        method: POST
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(this.props.item)
       }
     );
 
-    let results = await fetch(request);
-    let foods = await results.json();
-    return foods;
-  }
-  catch(error) {
-    console.log(error);
-    return [];
+    try {
+      let results = await fetch(request);
+      return results[0];
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   render() {
     return (
-      <Button info style={styles.Button}>
+      <Button large style={styles.Button} onPress={() => this.handleOnPress()}>
         <Text>Post Dish</Text>
       </Button>
     );
@@ -40,6 +40,8 @@ export default class PostDishButton extends Component {
 }
 
 const styles = StyleSheet.create({
- Button: {alignSelf: 'center', margin: 30}
-  });
-  
+  Button: {
+    alignSelf: "center",
+    margin: 30
+  }
+});

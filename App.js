@@ -6,7 +6,6 @@ import SingleItem from "./Screens/SingleItem";
 import SingleType from "./Screens/SingleTypeScreen";
 import FoodTypes from "./Screens/FoodTypesScreen";
 import NewItem from "./Screens/NewItemScreen";
-import NewHotSingles from "./Screens/NewHotSingleScreen";
 import LogIn from "./Screens/LogInScreen"
 import SignUp from "./Screens/SignUpScreen"
 const RootNavigator = StackNavigator(
@@ -16,7 +15,6 @@ const RootNavigator = StackNavigator(
     SingleType: { screen: SingleType},
     FoodTypes: { screen: FoodTypes},
     NewItem: { screen: NewItem},
-    NewHotSingles: { screen: NewHotSingles},
     LogIn: {screen: LogIn},
     SignUp: {screen: SignUp}
   },

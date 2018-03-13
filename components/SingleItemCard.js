@@ -5,7 +5,7 @@ import { Body, Card, CardItem, Left, Right, Button, Icon } from "native-base";
 import Map from "../components/Map";
 import RatingButton from "../components/RatingButton";
 import openMap from "react-native-open-maps";
-import call from "react-native-phone-call";
+
 
 export default class SingleItemCard extends Component {
   constructor(props) {
@@ -19,10 +19,6 @@ export default class SingleItemCard extends Component {
       longitude: long
     });
   }
-  callPhone(number) {
-    console.log(number);
-  }
-
   render() {
     return (
       <Card>
@@ -67,10 +63,8 @@ export default class SingleItemCard extends Component {
             <Left>
               <Button
                 info
-                styles={styles.RatingButton}
-                onPress={() => {
-                  this.callPhone(this.food.CallPhone);
-                }}
+                style={styles.RatingButton}
+                onPress={this.props.Call}
               >
                 <Icon name="md-call" />
                 <Text style={styles.RatingText}>Call</Text>
@@ -114,8 +108,8 @@ export default class SingleItemCard extends Component {
 }
 
 const styles = StyleSheet.create({
-  Name: { textAlign: "center", fontSize: 25 },
-  RestaurantName: { textAlign: "center" },
+  Name: { textAlign: "center", fontSize: 30 },
+  RestaurantName: { textAlign: "center", fontSize: 20},
   Image: { height: 200, width: 200, alignSelf: "center" },
   Address: { fontSize: 15 },
   Price: { fontSize: 30 },

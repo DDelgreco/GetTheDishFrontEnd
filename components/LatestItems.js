@@ -27,9 +27,9 @@ export default class LatestItems extends Component {
       return [];
     }
   }
-  navigate(food) {
-    this.props.navigation.navigate("SingleItem", { food });
-  }
+
+
+
   render() {
     return (
       <View>
@@ -37,11 +37,11 @@ export default class LatestItems extends Component {
           {this.state.latest.map((food, index) => {
             return (
               <NewHotCard
-                key={index}
-                food={food}
                 Navigate={() => {
                   this.navigate(food);
                 }}
+                key={index}
+                food={food}
               />
             );
           })}

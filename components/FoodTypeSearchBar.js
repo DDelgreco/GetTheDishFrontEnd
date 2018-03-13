@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Autocomplete from "react-native-autocomplete-input";
 
-export default class RestaurantSearchBar extends Component {
+export default class FoodTypeSearchBar extends Component {
   constructor(props) {
     super(props);
     this.state = { data: [], query: "" };
@@ -16,7 +16,7 @@ export default class RestaurantSearchBar extends Component {
   async fetchTypes() {
     try {
       let results = await fetch({
-        url: `https://still-harbor-63243.herokuapp.com/api/yelp/search/`
+        url: `https://still-harbor-63243.herokuapp.com/api/type/`
       });
       let restaurants = await results.json();
       return restaurants;
@@ -42,7 +42,7 @@ export default class RestaurantSearchBar extends Component {
 
   async handleDropListSelect(name, id) {
     this.setState({ query: name });
-    this.props.onRestaurantSelect(id);
+    this.props.onTypeSelect(id);
   }
 
   render() {
@@ -58,7 +58,7 @@ export default class RestaurantSearchBar extends Component {
             listStyle={styles.listThing}
             data={data.length === 1 && comp(query, data[0].name) ? [] : data}
             defaultValue={this.state.query}
-            placeholder={"Find Restaurant"}
+            placeholder={"Pick Food Type"}
             autoCorrect={false}
             onChangeText={text => this.handleSearchInput(text)}
             renderItem={({ name, id }) => (

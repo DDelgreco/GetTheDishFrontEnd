@@ -10,8 +10,8 @@ export default class LogIn extends Component {
     super(props);
   }
 
-  navigate() {
-    this.props.navigation.navigate("FoodTypes");
+  toSignUp() {
+    this.props.navigation.navigate("SignUp");
   }
   toHome() {
     this.props.navigation.navigate("Home");
@@ -25,7 +25,7 @@ export default class LogIn extends Component {
   toSingleItem(food) {
     this.props.navigation.navigate("NewHotSingles");
   }
-  toLogIn(){
+  toLogIn() {
     this.props.navigation.navigate("LogIn");
   }
 
@@ -49,7 +49,13 @@ export default class LogIn extends Component {
           </Form>
           <Text style={styles.Divider}>________________</Text>
           <Text style={styles.Text}>Don't have an account?{"\n"}Sign Up!</Text>
-          <Button info style={styles.Button}>
+          <Button
+            onPress={() => {
+              this.toSignUp();
+            }}
+            info
+            style={styles.Button}
+          >
             <Text>Sign Up</Text>
           </Button>
         </ScrollView>
@@ -64,7 +70,7 @@ export default class LogIn extends Component {
             this.toNewItem();
           }}
           Profile={() => {
-              this.toLogIn();
+            this.toLogIn();
           }}
         />
       </View>
@@ -74,7 +80,13 @@ export default class LogIn extends Component {
 
 const styles = StyleSheet.create({
   Button: { alignSelf: "center", margin: 10 },
-  Text: { fontWeight: 'bold',fontSize: 25, textAlign: "center", color: "white", margin: 20 },
+  Text: {
+    fontWeight: "bold",
+    fontSize: 25,
+    textAlign: "center",
+    color: "white",
+    margin: 20
+  },
   Form: {
     backgroundColor: "white",
     width: "90%",

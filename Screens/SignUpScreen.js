@@ -57,8 +57,8 @@ export default class SignUp extends Component {
             </Button>
           </Form>
           <Image
-          style={{alignSelf: 'center', height:150, width: 200, marginTop: 20}}
-                source={require("../pictures/a.png")}
+          // style={{alignSelf: 'center', height:150, width: 200, marginTop: 30}}
+          //       source={require("../pictures/a.png")}
                 />
         </ScrollView>
         <NavBar

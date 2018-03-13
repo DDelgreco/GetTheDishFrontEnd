@@ -10,7 +10,7 @@ export default class SingleType extends Component {
     title: navigation.state.params.type.name
   });
   navigate(food) {
-    this.props.navigation.navigate("SingleFood", (food));
+    this.props.navigation.navigate("SingleFood", food);
   }
   toHome() {
     this.props.navigation.navigate("Home");
@@ -24,7 +24,7 @@ export default class SingleType extends Component {
   toSingleItem(food) {
     this.props.navigation.navigate("NewHotSingles");
   }
-  toLogIn(){
+  toLogIn() {
     this.props.navigation.navigate("LogIn");
   }
   constructor(props) {
@@ -66,7 +66,7 @@ export default class SingleType extends Component {
   }
   render() {
     return (
-      <View style={{ flex: 1 , backgroundColor: 'dimgrey'}}>
+      <View style={{ flex: 1, backgroundColor: "dimgrey" }}>
         <ScrollView>
           {this.state.foods.map((food, index) => {
             return (
@@ -92,7 +92,7 @@ export default class SingleType extends Component {
           }}
           Profile={() => {
             this.toLogIn();
-        }}
+          }}
         />
       </View>
     );

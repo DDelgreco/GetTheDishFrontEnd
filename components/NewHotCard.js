@@ -20,13 +20,15 @@ export default class NewHotCard extends Component {
     this.food = this.props.food;
     console.log(this.food);
   }
+
   render() {
     return (
       <Card style={{ flex: 0 }}>
         <CardItem>
           <Left>
             <Body>
-              <Thumbnail square
+              <Thumbnail
+                square
                 style={styles.Thumbnail}
                 source={require("../pictures/food.png")}
               />
@@ -34,9 +36,7 @@ export default class NewHotCard extends Component {
           </Left>
           <Right>
             <Body>
-              <Text style={styles.Name}>
-                {this.food.Name}
-              </Text>
+              <Text style={styles.Name}>{this.food.Name}</Text>
               <Text style={styles.RestaurantName} note>
                 {this.food.RestaurantName}
               </Text>
@@ -66,7 +66,8 @@ export default class NewHotCard extends Component {
           <Right>
             <Button
               onPress={this.props.Navigate}
-              small info
+              small
+              info
               style={styles.MoreButton}
             >
               <Icon />
@@ -88,6 +89,4 @@ const styles = StyleSheet.create({
   RatingButton: { height: 30 },
   RatingText: { fontSize: 14 },
   MoreButtonText: { textAlign: "center" }
-
 });
-

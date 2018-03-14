@@ -29,8 +29,8 @@ export default class NewHotCard extends Component {
             <Body>
               <Thumbnail
                 square
-                style={styles.Thumbnail}
-                source={require("../pictures/food.png")}
+                style={styles.ThumbNail}
+                source={{uri: this.food.Image}}
               />
             </Body>
           </Left>
@@ -81,9 +81,9 @@ export default class NewHotCard extends Component {
 }
 
 const styles = StyleSheet.create({
-  ThumbNail: { height: 100, width: 100 },
-  Name: { textAlign: "center", fontSize: 20 },
-  RestaurantName: { fontSize: 13, textAlign: "center" },
+  ThumbNail: { height: 100, width: 150 },
+  Name: { textAlign: "center", fontSize: 30 },
+  RestaurantName: { fontSize: 20, textAlign: "center" },
   Location: { fontSize: 15 },
   Phone: { fontSize: 15 },
   RatingButton: { height: 30 },

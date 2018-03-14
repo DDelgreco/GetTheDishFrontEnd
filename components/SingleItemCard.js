@@ -6,7 +6,6 @@ import Map from "../components/Map";
 import RatingButton from "../components/RatingButton";
 import openMap from "react-native-open-maps";
 
-
 export default class SingleItemCard extends Component {
   constructor(props) {
     super(props);
@@ -35,10 +34,7 @@ export default class SingleItemCard extends Component {
         <View>
           <CardItem>
             <Body>
-              <Image
-                source={require("../pictures/food.png")}
-                style={styles.Image}
-              />
+              <Image source={{ uri: this.food.Image }} style={styles.Image} />
             </Body>
           </CardItem>
         </View>
@@ -108,9 +104,9 @@ export default class SingleItemCard extends Component {
 }
 
 const styles = StyleSheet.create({
-  Name: { textAlign: "center", fontSize: 30 },
-  RestaurantName: { textAlign: "center", fontSize: 20},
-  Image: { height: 200, width: 200, alignSelf: "center" },
+  Name: { textAlign: "center", fontSize: 30, alignSelf: "center" },
+  RestaurantName: { textAlign: "center", fontSize: 20, alignSelf: 'center' },
+  Image: { height: 300, width: "90%", alignSelf: "center" },
   Address: { fontSize: 15 },
   Price: { fontSize: 30 },
   RatingButton: { alignSelf: "center" },

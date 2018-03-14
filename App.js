@@ -8,6 +8,7 @@ import FoodTypes from "./Screens/FoodTypesScreen";
 import NewItem from "./Screens/NewItemScreen";
 import LogIn from "./Screens/LogInScreen"
 import SignUp from "./Screens/SignUpScreen"
+import Profile from "./Screens/Profile Screen";
 const RootNavigator = StackNavigator(
   {
     Home: { screen: HomeScreen },
@@ -16,10 +17,11 @@ const RootNavigator = StackNavigator(
     FoodTypes: { screen: FoodTypes},
     NewItem: { screen: NewItem},
     LogIn: {screen: LogIn},
-    SignUp: {screen: SignUp}
+    SignUp: {screen: SignUp},
+    Profile: {screen: Profile}
   },
   {
-    initialRouteName: "Home"
+    initialRouteName: "Profile"
   }
 );
 

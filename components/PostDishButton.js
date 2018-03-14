@@ -1,17 +1,24 @@
 import React, { Component } from "react";
 import { Button, Icon, Text } from "native-base";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Alert } from "react-native";
 
 export default class PostDishButton extends Component {
   constructor(props) {
     super(props);
   }
-
+  toHome() {
+    this.props.navigation.navigate("Home");
+  }
   async handleOnPress() {
     let result = await this.postItem();
     console.log("It is posted.");
+    Alert.alert("Thanks!", "Your Dish Has Been Posted", [
+      {
+        text: "Sweet!",
+        onPress: this.props.Home
+      }
+    ]);
   }
-
   async postItem() {
     let request = new Request(
       `https://still-harbor-63243.herokuapp.com/api/items/checkrest`,
@@ -32,7 +39,12 @@ export default class PostDishButton extends Component {
 
   render() {
     return (
-      <Button info large style={styles.Button} onPress={() => this.handleOnPress()}>
+      <Button
+        info
+        large
+        style={styles.Button}
+        onPress={() => this.handleOnPress()}
+      >
         <Text>Post Dish</Text>
       </Button>
     );

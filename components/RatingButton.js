@@ -5,7 +5,7 @@ export default class RatingButton extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { rating: this.props.Rating };
+        this.state = { rating: 0 };
     }
 
     async componentDidMount() {
@@ -27,7 +27,9 @@ export default class RatingButton extends Component {
 
     async onClick() {
         let rating = await this.putRating();
-        this.setState({ rating });
+        let newRating = this.state.rating
+        newRating++;
+        this.setState({ rating: newRating });
     }
 
     async putRating() {

@@ -80,7 +80,7 @@ export default class ItemCard extends Component {
 
 const styles = StyleSheet.create({
   ThumbNail: { height: 100, width: 150 },
-  Name: { textAlign: "center", fontSize: 30 },
+  Name: { textAlign: "center", fontSize: 27 },
   RestaurantName: { fontSize: 20, textAlign: "center" },
   Location: { fontSize: 15 },
   Phone: { fontSize: 15 },

@@ -106,7 +106,7 @@ export default class SingleItemCard extends Component {
 const styles = StyleSheet.create({
   Name: { textAlign: "center", fontSize: 30, alignSelf: "center" },
   RestaurantName: { textAlign: "center", fontSize: 20, alignSelf: 'center' },
-  Image: { height: 300, width: "90%", alignSelf: "center" },
+  Image: { height: 300, width: "100%", alignSelf: "center" },
   Address: { fontSize: 15 },
   Price: { fontSize: 30 },
   RatingButton: { alignSelf: "center" },

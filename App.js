@@ -21,7 +21,7 @@ const RootNavigator = StackNavigator(
     Profile: {screen: Profile}
   },
   {
-    initialRouteName: "Profile"
+    initialRouteName: "Home"
   }
 );
 

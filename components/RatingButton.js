@@ -19,17 +19,25 @@ export default class RatingButton extends Component {
             method: 'GET'
         });
 
-        let results = await fetch(request);
-        let rating = await results.json();
-        return rating[0].Rating;
+        try {
+            let results = await fetch(request);
+            let rating = await results.json();
+            return rating[0].Rating;
+        } catch (error) {
+            alert('You must be logged in to vote!');
+        }
 
     }
 
     async onClick() {
-        let rating = await this.putRating();
-        let newRating = this.state.rating
-        newRating++;
-        this.setState({ rating: newRating });
+        try {
+            let rating = await this.putRating();
+            let newRating = this.state.rating
+            newRating++;
+            this.setState({ rating: newRating });
+        } catch (error) {
+            alert('You must be logged in to vote!');
+        }
     }
 
     async putRating() {

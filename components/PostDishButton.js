@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, Icon, Text } from "native-base";
-import { StyleSheet, Alert } from "react-native";
+import { StyleSheet, Alert, AsyncStorage } from "react-native";
 
 export default class PostDishButton extends Component {
   constructor(props) {
@@ -9,34 +9,41 @@ export default class PostDishButton extends Component {
   toHome() {
     this.props.navigation.navigate("Home");
   }
+
   async handleOnPress() {
-    try {
-      let result = await this.postItem();
-      Alert.alert("Thanks!", "Your Dish Has Been Posted", [
-        {
-          text: "Sweet!",
-          onPress: this.props.Home
-        }
-      ]);
-    } catch (error) {
-      alert('You must be logged in to add items!');
-    }
+    let result = await this.postItem();
   }
+
   async postItem() {
+
+    let token = await AsyncStorage.getItem('auth');
+
     let request = new Request(
       `https://still-harbor-63243.herokuapp.com/api/items/checkrest`,
       {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
         body: JSON.stringify(this.props.item)
       }
     );
 
     try {
       let results = await fetch(request);
-      return results[0];
+      if (results.status !== 201) {
+
+        return await alert('You must be logged in to add items!');
+
+      } else {
+        Alert.alert("Thanks!", "Your Dish Has Been Posted", [
+          {
+            text: "Sweet!",
+            onPress: this.props.Home
+          }
+        ]);
+        return results[0];
+      }
     } catch (error) {
-      alert('You must be logged in to add items!');
+      alert('Error ', error);
     }
   }
 

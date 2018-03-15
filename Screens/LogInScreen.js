@@ -38,6 +38,44 @@ export default class LogIn extends Component {
     this.props.navigation.navigate("Profile");
   }
 
+  async componentDidMount() {
+    let isLoggedIn = await this.checkLogin();
+    if (!isLoggedIn) {
+      return alert('Gotta log in first!');
+    } else {
+      this.toProfile();
+    }
+  }
+
+  async checkLogin() {
+
+    let token = await AsyncStorage.getItem("auth");
+
+    let request = new Request(
+      `https://still-harbor-63243.herokuapp.com/api/users/me`,
+      {
+        method: "GET",
+        headers: { "Authorization": `Bearer ${token}` }
+      }
+    );
+
+    try {
+
+      let results = await fetch(request);
+      if (results.status !== 200) {
+
+        return false;
+
+      } else {
+
+        return true;
+
+      }
+    } catch (error) {
+      console.log('You done messed up ', error);
+    }
+  }
+
   async handleLogin() {
     let data = {
       email: this.state.email,

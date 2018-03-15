@@ -9,6 +9,12 @@ export default class SignUp extends Component {
   };
   constructor(props) {
     super(props);
+    this.state = {
+      first_name: '',
+      last_name: '',
+      email: '',
+      password: ''
+    };
   }
 
   navigate() {
@@ -37,19 +43,31 @@ export default class SignUp extends Component {
           <Form style={styles.Form}>
             <Item floatingLabel last>
               <Label>First Name</Label>
-              <Input />
+              <Input
+                value={this.state.first_name}
+                onChangeText={(text) => this.setState({ first_name: text })} />
             </Item>
             <Item floatingLabel last>
               <Label>Last Name</Label>
-              <Input />
+              <Input
+                value={this.state.last_name}
+                onChangeText={(text) => this.setState({ last_name: text })} />
             </Item>
             <Item floatingLabel>
               <Label>E-Mail</Label>
-              <Input />
+              <Input
+                autoCapitalize={"none"}
+                keyboardType={'email address'}
+                value={this.state.email}
+                onChangeText={(text) => this.setState({ email: text })} />
             </Item>
             <Item floatingLabel last>
               <Label>Password</Label>
-              <Input />
+              <Input
+                autoCapitalize={"none"}
+                secureTextEntry={true}
+                value={this.state.password}
+                onChangeText={(text) => this.setState({ password: text })} />
             </Item>
 
             <Button info style={styles.Button}>
@@ -59,7 +77,7 @@ export default class SignUp extends Component {
           <Image
           // style={{alignSelf: 'center', height:150, width: 200, marginTop: 30}}
           //       source={require("../pictures/a.png")}
-                />
+          />
         </ScrollView>
         <NavBar
           Home={() => {

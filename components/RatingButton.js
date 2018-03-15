@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Icon, Text } from 'native-base';
+import { AsyncStorage } from 'react-native';
 
 export default class RatingButton extends Component {
 
@@ -42,8 +43,11 @@ export default class RatingButton extends Component {
 
     async putRating() {
 
+        let token = await AsyncStorage.getItem("auth");
+
         let request = new Request(`https://still-harbor-63243.herokuapp.com/api/rating/${this.props.id}`, {
-            method: 'PUT'
+            method: 'PUT',
+            headers: { 'Authorization': `Bearer ${token}` }
         });
 
         let results = await fetch(request);

@@ -57,7 +57,7 @@ export default class LogIn extends Component {
       let results = await fetch(request);
       if (results.status !== 201) {
 
-        await alert('Invalid email or password!');
+        return await alert('Invalid email or password!');
 
       } else {
 
@@ -79,15 +79,24 @@ export default class LogIn extends Component {
 
   async handleStoreAuthToken(token) {
     try {
-      await AsyncStorage.setItem("auth", token) 
+      await AsyncStorage.setItem("auth", token)
     } catch (error) {
       console.log('error storing token: ', error)
     }
   }
 
-  async checkAsyncStorage() {
-    let tokVal = await AsyncStorage.getItem("auth")
-    let usrVal = await AsyncStorage.getItem("userId")
+  async handleLogout() {
+    let token = await AsyncStorage.getItem('auth');
+    try {
+      await AsyncStorage.removeItem('auth');
+      if (!token) {
+        alert("Need to be logged in to log out!");
+      } else {
+        alert("You have been logged out!");
+      }
+    } catch (error) {
+      console.log('AsyncStorage error: ' + error.message);
+    }
   }
 
 

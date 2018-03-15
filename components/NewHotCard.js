@@ -18,7 +18,6 @@ export default class NewHotCard extends Component {
   constructor(props) {
     super(props);
     this.food = this.props.food;
-    console.log(this.food);
   }
 
   render() {

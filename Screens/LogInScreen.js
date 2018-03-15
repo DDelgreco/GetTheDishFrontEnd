@@ -32,6 +32,9 @@ export default class LogIn extends Component {
   toLogIn() {
     this.props.navigation.navigate("LogIn");
   }
+  toProfile() {
+    this.props.navigation.navigate("Profile");
+  }
 
   async handleLogin() {
 
@@ -70,6 +73,7 @@ export default class LogIn extends Component {
     } catch (error) {
       console.log(error);
     }
+    this.toProfile();
 
   }
 

@@ -25,9 +25,9 @@ export default class ProfileScreen extends Component {
               source={require("../pictures/profile.png")}
               style={styles.Image}
             />
-            <Text style={styles.Name}>Derrick Delgreco</Text>
+            <Text style={styles.Name}>Mr. Test</Text>
             <Text style={styles.Email} note>
-              ddelgreco@mac.com
+              test@test.com
             </Text>
             <Text style={styles.History}>User History</Text>
             <Text>

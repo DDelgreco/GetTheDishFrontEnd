@@ -10,14 +10,17 @@ export default class PostDishButton extends Component {
     this.props.navigation.navigate("Home");
   }
   async handleOnPress() {
-    let result = await this.postItem();
-    console.log("It is posted.");
-    Alert.alert("Thanks!", "Your Dish Has Been Posted", [
-      {
-        text: "Sweet!",
-        onPress: this.props.Home
-      }
-    ]);
+    try {
+      let result = await this.postItem();
+      Alert.alert("Thanks!", "Your Dish Has Been Posted", [
+        {
+          text: "Sweet!",
+          onPress: this.props.Home
+        }
+      ]);
+    } catch (error) {
+      alert('You must be logged in to add items!');
+    }
   }
   async postItem() {
     let request = new Request(
@@ -33,7 +36,7 @@ export default class PostDishButton extends Component {
       let results = await fetch(request);
       return results[0];
     } catch (error) {
-      console.log(error);
+      alert('You must be logged in to add items!');
     }
   }
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Header, Form, Item, Input, Label, Button, Text } from "native-base";
-import { StyleSheet, ScrollView, View } from "react-native";
+import { StyleSheet, ScrollView, View, AsyncStorage } from "react-native";
 import NavBar from "../components/NavBar";
 export default class LogIn extends Component {
   static navigationOptions = {
@@ -8,6 +8,10 @@ export default class LogIn extends Component {
   };
   constructor(props) {
     super(props);
+    this.state = {
+      email: '',
+      password: ''
+    };
   }
 
   toSignUp() {
@@ -29,6 +33,60 @@ export default class LogIn extends Component {
     this.props.navigation.navigate("LogIn");
   }
 
+  async handleLogin() {
+
+    let data = {
+      email: this.state.email,
+      password: this.state.password
+    };
+
+    let request = new Request(
+      `https://still-harbor-63243.herokuapp.com/api/auth/login`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      }
+    );
+
+
+    try {
+      let results = await fetch(request);
+      if (results.status !== 201) {
+
+        await alert('Invalid email or password!');
+
+      } else {
+
+        let parsedResults = JSON.parse(results._bodyInit);
+        let token = parsedResults.token;
+        let stringedToken = JSON.stringify(token);
+
+        await this.handleStoreAuthToken(stringedToken);
+        await this.props.Home;
+
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
+
+  async handleStoreAuthToken(token) {
+    try {
+      await AsyncStorage.setItem("auth", token) 
+    } catch (error) {
+      console.log('error storing token: ', error)
+    }
+  }
+
+  async checkAsyncStorage() {
+    let tokVal = await AsyncStorage.getItem("auth")
+    let usrVal = await AsyncStorage.getItem("userId")
+  }
+
+
   render() {
     return (
       <View style={styles.View}>
@@ -36,13 +94,19 @@ export default class LogIn extends Component {
           <Form style={styles.Form}>
             <Item floatingLabel>
               <Label>E-Mail</Label>
-              <Input />
+              <Input
+                autoCapitalize={'none'}
+                onChangeText={(email) => this.setState({ email })}
+                value={this.state.email} />
             </Item>
             <Item floatingLabel last>
               <Label>Password</Label>
-              <Input secureTextEntry={true}/>
+              <Input
+                autoCapitalize={'none'}
+                secureTextEntry={true}
+                onChangeText={(password) => this.setState({ password })} />
             </Item>
-            <Button info style={styles.Button}>
+            <Button info style={styles.Button} onPress={() => this.handleLogin()}>
               <Text>Log In</Text>
             </Button>
             <Item />

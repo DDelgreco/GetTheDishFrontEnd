@@ -40,7 +40,7 @@ export default class LogIn extends Component {
             </Item>
             <Item floatingLabel last>
               <Label>Password</Label>
-              <Input />
+              <Input secureTextEntry={true}/>
             </Item>
             <Button info style={styles.Button}>
               <Text>Log In</Text>

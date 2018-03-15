@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { Footer, FooterTab, Button, Icon, Text } from "native-base";
 
 export default class NavBar extends Component {
@@ -11,20 +11,20 @@ export default class NavBar extends Component {
     return (
       <Footer>
         <FooterTab>
-          <Button onPress={this.props.Home}>
-            <Icon name="ios-home-outline" />
+          <Button dark transparent  onPress={this.props.Home}>
+            <Icon name="ios-home" />
             <Text>Home</Text>
           </Button>
-          <Button onPress={this.props.Types}>
-            <Icon name="ios-albums-outline" />
+          <Button dark transparent onPress={this.props.Types}>
+            <Icon name="md-restaurant" />
             <Text>Foods</Text>
           </Button>
-          <Button onPress={this.props.NewItem}>
-            <Icon name="ios-add" />
+          <Button dark transparent onPress={this.props.NewItem}>
+            <Icon name="ios-add-circle" />
             <Text>New Dish</Text>
           </Button>
-          <Button onPress={this.props.Profile}>
-            <Icon name="person" />
+          <Button dark transparent onPress={this.props.Profile}>
+            <Icon name="ios-contact" />
             <Text>Profile</Text>
           </Button>
         </FooterTab>
@@ -32,3 +32,4 @@ export default class NavBar extends Component {
     );
   }
 }
+

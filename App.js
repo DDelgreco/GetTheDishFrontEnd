@@ -8,7 +8,7 @@ import FoodTypes from "./Screens/FoodTypesScreen";
 import NewItem from "./Screens/NewItemScreen";
 import LogIn from "./Screens/LogInScreen"
 import SignUp from "./Screens/SignUpScreen"
-import Profile from "./Screens/Profile Screen";
+import Profile from "./Screens/ProfileScreen";
 const RootNavigator = StackNavigator(
   {
     Home: { screen: HomeScreen },

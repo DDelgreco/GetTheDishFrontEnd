@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Image, ScrollView, View, StyleSheet } from "react-native";
 import { Card, Text, Button, Icon } from "native-base";
 import NavBar from "../components/NavBar";
+import SignOutButton from "../components/SignOutButton";
 
 export default class ProfileScreen extends Component {
   toHome() {
@@ -38,6 +39,9 @@ export default class ProfileScreen extends Component {
               another story. So, yeah.
             </Text>
           </Card>
+          <SignOutButton Home={() => {
+            this.props.navigation.navigate("Home")
+          }}/>
         </ScrollView>
         <NavBar
           Home={() => {

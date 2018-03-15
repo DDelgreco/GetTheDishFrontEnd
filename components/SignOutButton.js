@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import { Button, Text } from "native-base";
-import {AsyncStorage} from "react-native"
+import { AsyncStorage, Alert } from "react-native";
 
 export default class SignOutButton extends Component {
   constructor(props) {
     super(props);
   }
 
+  toHome() {
+    this.props.navigation.navigate("Home");
+  }
   async handleLogout() {
     let token = await AsyncStorage.getItem("auth");
     try {
@@ -14,7 +17,12 @@ export default class SignOutButton extends Component {
       if (!token) {
         alert("Need to be logged in to log out!");
       } else {
-        alert("You have been logged out!");
+        Alert.alert("Thanks!", "You Have Been Logged Out", [
+          {
+            text: "Sweet!",
+            onPress: this.props.Home
+          }
+        ]);
       }
     } catch (error) {
       console.log("AsyncStorage error: " + error.message);

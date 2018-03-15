@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, Text, Icon, Header } from "native-base";
-import { ScrollView, View, StyleSheet } from "react-native";
+import { ScrollView, View, StyleSheet, AsyncStorage } from "react-native";
 import NavBar from "../components/NavBar";
 import HotItems from "../components/HotItems";
 import LatestItems from "../components/LatestItems";
@@ -61,9 +61,34 @@ export default class HomeScreen extends Component {
   toNewItem() {
     this.props.navigation.navigate("NewItem");
   }
-
-  toLogIn() {
+  profile() {
     this.props.navigation.navigate("LogIn");
+  }
+
+  async profile() {
+    let token = await AsyncStorage.getItem("auth");
+
+    let request = new Request(
+      `https://still-harbor-63243.herokuapp.com/api/users/me`,
+      {
+        method: "Get",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+
+    try {
+      let results = await fetch(request);
+      if (results.status !== 200) {
+        this.props.navigation.navigate("LogIn");
+      } else {
+        this.props.navigation.navigate("Profile");
+      }
+    } catch (error) {
+      alert("Error ", error);
+    }
   }
 
   render() {
@@ -112,7 +137,7 @@ export default class HomeScreen extends Component {
             this.toNewItem();
           }}
           Profile={() => {
-            this.toLogIn();
+            this.profile();
           }}
         />
       </View>

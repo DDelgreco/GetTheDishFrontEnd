@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Header, Form, Item, Input, Label, Button, Text } from "native-base";
 import { StyleSheet, ScrollView, View, AsyncStorage } from "react-native";
-import SignOutButton from '../components/SignOutButton';
+import SignOutButton from "../components/SignOutButton";
 import NavBar from "../components/NavBar";
+
 export default class LogIn extends Component {
   static navigationOptions = {
     title: "Get The Dish"
@@ -10,8 +11,8 @@ export default class LogIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: ''
+      email: "",
+      password: ""
     };
   }
 
@@ -38,7 +39,6 @@ export default class LogIn extends Component {
   }
 
   async handleLogin() {
-
     let data = {
       email: this.state.email,
       password: this.state.password
@@ -53,36 +53,29 @@ export default class LogIn extends Component {
       }
     );
 
-
     try {
       let results = await fetch(request);
       if (results.status !== 201) {
-
-        return await alert('Invalid email or password!');
-
+        return await alert("Invalid email or password!");
       } else {
-
         let parsedResults = JSON.parse(results._bodyInit);
         let token = parsedResults.token;
         let stringedToken = JSON.stringify(token);
 
         await this.handleStoreAuthToken(stringedToken);
         await this.props.Home;
-
       }
-
     } catch (error) {
       console.log(error);
     }
     this.toProfile();
-
   }
 
   async handleStoreAuthToken(token) {
     try {
-      await AsyncStorage.setItem("auth", token)
+      await AsyncStorage.setItem("auth", token);
     } catch (error) {
-      console.log('error storing token: ', error)
+      console.log("error storing token: ", error);
     }
   }
 
@@ -94,21 +87,27 @@ export default class LogIn extends Component {
             <Item floatingLabel>
               <Label>E-Mail</Label>
               <Input
-                autoCapitalize={'none'}
-                onChangeText={(email) => this.setState({ email })}
-                value={this.state.email} />
+                autoCapitalize={"none"}
+                onChangeText={email => this.setState({ email })}
+                value={this.state.email}
+              />
             </Item>
             <Item floatingLabel last>
               <Label>Password</Label>
               <Input
-                autoCapitalize={'none'}
+                autoCapitalize={"none"}
                 secureTextEntry={true}
-                onChangeText={(password) => this.setState({ password })} />
+                onChangeText={password => this.setState({ password })}
+              />
             </Item>
-            <Button info style={styles.Button} onPress={() => this.handleLogin()}>
+            <Button
+              info
+              style={styles.Button}
+              onPress={() => this.handleLogin()}
+            >
               <Text>Log In</Text>
             </Button>
-            <SignOutButton />
+
             <Item />
           </Form>
           <Text style={styles.Divider}>________________</Text>

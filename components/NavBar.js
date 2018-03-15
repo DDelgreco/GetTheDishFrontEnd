@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, AsyncStorage } from "react-native";
 import { Footer, FooterTab, Button, Icon, Text } from "native-base";
 
 export default class NavBar extends Component {
@@ -7,11 +7,35 @@ export default class NavBar extends Component {
     super(props);
   }
 
+  async profile() {
+    let token = await AsyncStorage.getItem("auth");
+
+    let request = new Request(
+      `https://still-harbor-63243.herokuapp.com/api/users/me`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+    try {
+      if (results.status !== 200) {
+        this.props.navigation.navigate("LogIn");
+      } else {
+        this.props.navigation.navigate("Profile");
+      }
+    } catch (error) {
+      alert("Error ", error);
+    }
+  }
+
   render() {
     return (
       <Footer>
         <FooterTab>
-          <Button dark transparent  onPress={this.props.Home}>
+          <Button dark transparent onPress={this.props.Home}>
             <Icon name="ios-home" />
             <Text>Home</Text>
           </Button>
@@ -23,7 +47,13 @@ export default class NavBar extends Component {
             <Icon name="ios-add-circle" />
             <Text>New Dish</Text>
           </Button>
-          <Button dark transparent onPress={this.props.Profile}>
+          <Button
+            dark
+            transparent
+            onPress={() => {
+              this.profile();
+            }}
+          >
             <Icon name="ios-contact" />
             <Text>Profile</Text>
           </Button>
@@ -32,4 +62,3 @@ export default class NavBar extends Component {
     );
   }
 }
-

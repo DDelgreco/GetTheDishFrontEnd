@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Header, Form, Item, Input, Label, Button, Text } from "native-base";
 import { StyleSheet, ScrollView, View, AsyncStorage } from "react-native";
+import SignOutButton from '../components/SignOutButton';
 import NavBar from "../components/NavBar";
 export default class LogIn extends Component {
   static navigationOptions = {
@@ -85,21 +86,6 @@ export default class LogIn extends Component {
     }
   }
 
-  async handleLogout() {
-    let token = await AsyncStorage.getItem('auth');
-    try {
-      await AsyncStorage.removeItem('auth');
-      if (!token) {
-        alert("Need to be logged in to log out!");
-      } else {
-        alert("You have been logged out!");
-      }
-    } catch (error) {
-      console.log('AsyncStorage error: ' + error.message);
-    }
-  }
-
-
   render() {
     return (
       <View style={styles.View}>
@@ -122,6 +108,7 @@ export default class LogIn extends Component {
             <Button info style={styles.Button} onPress={() => this.handleLogin()}>
               <Text>Log In</Text>
             </Button>
+            <SignOutButton />
             <Item />
           </Form>
           <Text style={styles.Divider}>________________</Text>

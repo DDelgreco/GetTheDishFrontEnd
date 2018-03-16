@@ -1,11 +1,16 @@
 import React, { Component } from "react";
-import { Image, ScrollView, View, StyleSheet, AsyncStorage } from "react-native";
+import {
+  Image,
+  ScrollView,
+  View,
+  StyleSheet,
+  AsyncStorage
+} from "react-native";
 import { Card, Text, Button, Icon } from "native-base";
 import NavBar from "../components/NavBar";
 import SignOutButton from "../components/SignOutButton";
 
 export default class ProfileScreen extends Component {
-
   toHome() {
     this.props.navigation.navigate("Home");
   }
@@ -18,6 +23,26 @@ export default class ProfileScreen extends Component {
   toLogIn() {
     this.props.navigation.navigate("LogIn");
   }
+  async componentDidMount() {
+    let data = await this.getUser();
+    this.setState({ data });
+  }
+  async getUser() {
+    let token = await AsyncStorage.getItem("auth");
+
+    let request = new Request(
+      `https://still-harbor-63243.herokuapp.com/api/users/me`,
+      {
+        method: "GET",
+        headers: { Authorization: `Bearer ${token}` }
+      }
+    );
+    return request;
+
+    let results = await fetch(request);
+    results = JSON.parse(results);
+    return results;
+  }
 
   render() {
     return (
@@ -28,7 +53,7 @@ export default class ProfileScreen extends Component {
               source={require("../pictures/profile.png")}
               style={styles.Image}
             />
-            <Text style={styles.Name}>Mr. Test</Text>
+            <Text style={styles.Name}></Text>
             <Text style={styles.Email} note>
               test@test.com
             </Text>
@@ -41,9 +66,11 @@ export default class ProfileScreen extends Component {
               another story. So, yeah.
             </Text>
           </Card>
-          <SignOutButton Home={() => {
-            this.props.navigation.navigate("Home")
-          }} />
+          <SignOutButton
+            Home={() => {
+              this.props.navigation.navigate("Home");
+            }}
+          />
         </ScrollView>
         <NavBar
           Home={() => {

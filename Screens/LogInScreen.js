@@ -41,21 +41,18 @@ export default class LogIn extends Component {
   async componentDidMount() {
     let isLoggedIn = await this.checkLogin();
     if (!isLoggedIn) {
-      return alert('Gotta log in first!');
     } else {
       this.toProfile();
     }
   }
 
   async checkLogin() {
-
     let token = await AsyncStorage.getItem("auth");
     if (!token) {
       return false;
     } else {
       return true;
     }
-
   }
 
   async handleLogin() {

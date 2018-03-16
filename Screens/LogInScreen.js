@@ -50,30 +50,12 @@ export default class LogIn extends Component {
   async checkLogin() {
 
     let token = await AsyncStorage.getItem("auth");
-
-    let request = new Request(
-      `https://still-harbor-63243.herokuapp.com/api/users/me`,
-      {
-        method: "GET",
-        headers: { "Authorization": `Bearer ${token}` }
-      }
-    );
-
-    try {
-
-      let results = await fetch(request);
-      if (results.status !== 200) {
-
-        return false;
-
-      } else {
-
-        return true;
-
-      }
-    } catch (error) {
-      console.log('You done messed up ', error);
+    if (!token) {
+      return false;
+    } else {
+      return true;
     }
+
   }
 
   async handleLogin() {

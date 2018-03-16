@@ -11,6 +11,12 @@ import NavBar from "../components/NavBar";
 import SignOutButton from "../components/SignOutButton";
 
 export default class ProfileScreen extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { data: {} };
+  }
+
   toHome() {
     this.props.navigation.navigate("Home");
   }
@@ -49,7 +55,6 @@ export default class ProfileScreen extends Component {
   async componentDidMount() {
     let data = await this.getProfile();
     this.setState({ data });
-    console.log(this.state.data);
   }
 
 
@@ -80,7 +85,7 @@ export default class ProfileScreen extends Component {
               source={require("../pictures/profile.png")}
               style={styles.Image}
             />
-            <Text style={styles.Name}></Text>
+            <Text style={styles.Name}>{this.state.data.first_name}</Text>
             <Text style={styles.Email} note>
               test@test.com
             </Text>

@@ -37,6 +37,7 @@ export default class SignUp extends Component {
   }
 
   async handleSignup() {
+
     let data = this.state;
 
     let request = new Request(
@@ -49,16 +50,15 @@ export default class SignUp extends Component {
     );
 
     try {
-
       let results = await fetch(request);
       if(results.status !== 201) {
-        alert('Invalid input!');
+        alert('Invalid Status', error);
       } else {
         this.toLogIn();
       }
 
     } catch (error) {
-      alert('Invalid input!');
+      alert('Error', error);
     }
 
   }

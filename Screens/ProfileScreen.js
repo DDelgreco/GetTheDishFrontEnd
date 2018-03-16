@@ -19,6 +19,33 @@ export default class ProfileScreen extends Component {
     this.props.navigation.navigate("LogIn");
   }
 
+
+
+  async componentDidMount() {
+    let data = await this.getProfile();
+    this.setState({ data });
+    console.log(this.state.data);
+  }
+
+
+  async getProfile() {
+    
+    let token = await AsyncStorage.getItem("auth");
+
+    let request = new Request(
+      `https://still-harbor-63243.herokuapp.com/api/users/me`,
+      {
+        method: "GET",
+        headers: { "Authorization": `Bearer ${token}` },
+      }
+    );
+
+    let results = await fetch(request);
+    let parsedResults = JSON.parse(results._bodyInit);
+    return parsedResults;
+
+  }
+
   render() {
     return (
       <View style={styles.View}>

@@ -36,6 +36,33 @@ export default class SignUp extends Component {
     this.props.navigation.navigate("LogIn");
   }
 
+  async handleSignup() {
+    let data = this.state;
+
+    let request = new Request(
+      `https://still-harbor-63243.herokuapp.com/api/users/newuser/`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      }
+    );
+
+    try {
+
+      let results = await fetch(request);
+      if(results.status !== 201) {
+        alert('Invalid input!');
+      } else {
+        this.toLogIn();
+      }
+
+    } catch (error) {
+      alert('Invalid input!');
+    }
+
+  }
+
   render() {
     return (
       <View style={styles.View}>
@@ -57,7 +84,7 @@ export default class SignUp extends Component {
               <Label>E-Mail</Label>
               <Input
                 autoCapitalize={"none"}
-                keyboardType={'email address'}
+                keyboardType={"email-address"}
                 value={this.state.email}
                 onChangeText={(text) => this.setState({ email: text })} />
             </Item>
@@ -70,7 +97,7 @@ export default class SignUp extends Component {
                 onChangeText={(text) => this.setState({ password: text })} />
             </Item>
 
-            <Button info style={styles.Button}>
+            <Button info style={styles.Button} onPress={() => this.handleSignup()}>
               <Text>Sign Up</Text>
             </Button>
           </Form>
